@@ -108,41 +108,53 @@ public class DiceRoleSnake extends Application {
                         //Ladders
                         if(player2XPos == 200 && player2YPos == 760){
                             TranslatePlayer(player2XPos = 120, player2YPos = 520, player2);
+                            posCir2 += 3;
                         }
                         if(player2XPos == 760 && player2YPos == 760){
                             TranslatePlayer(player2XPos = 680, player2YPos = 680, player2);
+                            posCir2 += 1;
                         }
                         if(player2XPos == 520 && player2YPos == 600){
                             TranslatePlayer(player2XPos = 600, player2YPos = 360, player2);
+                            posCir2 += 3;
                         }
                         if(player2XPos == 40 && player2YPos == 280){
                             TranslatePlayer(player2XPos = 120, player2YPos = 40, player2);
+                            posCir2 += 3;
                         }
                         if(player2XPos == 360 && player2YPos == 360){
                             TranslatePlayer(player2XPos = 280, player2YPos = 120, player2);
+                            posCir2 += 3;
                         }
                         if(player2XPos == 680 && player2YPos == 200){
                             TranslatePlayer(player2XPos = 760, player2YPos = 120, player2);
+                            posCir2 += 1;
                         }
 
                         //Snakes
                         if(player2XPos == 360 && player2YPos == 680){
                             TranslatePlayer(player2XPos = 600, player2YPos = 680, player2);
+                            posCir2 -= 0;
                         }
                         if(player2XPos == 760 && player2YPos == 520){
                             TranslatePlayer(player2XPos = 280, player2YPos = 760, player2);
+                            posCir2 -= 3;
                         }
                         if(player2XPos == 520 && player2YPos == 440){
                             TranslatePlayer(player2XPos = 360, player2YPos = 600, player2);
+                            posCir2 -= 2;
                         }
                         if(player2XPos == 200 && player2YPos == 280){
                             TranslatePlayer(player2XPos = 40, player2YPos = 360, player2);
+                            posCir2 -= 1;
                         }
                         if(player2XPos == 440 && player2YPos == 280){
                             TranslatePlayer(player2XPos = 680, player2YPos = 360, player2);
+                            posCir2 -= 1;
                         }
                         if(player2XPos == 280 && player2YPos == 40){
                             TranslatePlayer(player2XPos = 440, player2YPos = 200, player2);
+                            posCir2 -= 2;
                         }
                     }
                 }
@@ -167,41 +179,53 @@ public class DiceRoleSnake extends Application {
                         //Ladders
                         if(player1XPos == 200 && player1YPos == 760){
                             TranslatePlayer(player1XPos = 120, player1YPos = 520, player1);
+                            posCir1 += 3;
                         }
                         if(player1XPos == 760 && player1YPos == 760){
                             TranslatePlayer(player1XPos = 680, player1YPos = 680, player1);
+                            posCir1 += 1;
                         }
                         if(player1XPos == 520 && player1YPos == 600){
                             TranslatePlayer(player1XPos = 600, player1YPos = 360, player1);
+                            posCir1 += 3;
                         }
                         if(player1XPos == 40 && player1YPos == 280){
                             TranslatePlayer(player1XPos = 120, player1YPos = 40, player1);
+                            posCir1 += 3;
                         }
                         if(player1XPos == 360 && player1YPos == 360){
                             TranslatePlayer(player1XPos = 280, player1YPos = 120, player1);
+                            posCir1 += 3;
                         }
                         if(player1XPos == 680 && player1YPos == 200){
                             TranslatePlayer(player1XPos = 760, player1YPos = 120, player1);
+                            posCir1 += 1;
                         }
 
                         //Snakes
                         if(player1XPos == 360 && player1YPos == 680){
                             TranslatePlayer(player1XPos = 600, player1YPos = 680, player1);
+                            posCir1 -= 0;
                         }
                         if(player1XPos == 760 && player1YPos == 520){
                             TranslatePlayer(player1XPos = 280, player1YPos = 760, player1);
+                            posCir1 -= 3;
                         }
                         if(player1XPos == 520 && player1YPos == 440){
                             TranslatePlayer(player1XPos = 360, player1YPos = 600, player1);
+                            posCir1 -= 2;
                         }
                         if(player1XPos == 200 && player1YPos == 280){
                             TranslatePlayer(player1XPos = 40, player1YPos = 360, player1);
+                            posCir1 -= 1;
                         }
                         if(player1XPos == 440 && player1YPos == 280){
                             TranslatePlayer(player1XPos = 680, player1YPos = 360, player1);
+                            posCir1 -= 1;
                         }
                         if(player1XPos == 280 && player1YPos == 40){
                             TranslatePlayer(player1XPos = 440, player1YPos = 200, player1);
+                            posCir1 -= 2;
                         }
                     }
                 }
@@ -271,6 +295,7 @@ public class DiceRoleSnake extends Application {
                 player1XPos = 40;
                 player1YPos = 40;
                 randResult.setText("Player 1 won");
+                gameStart = false;
                 gameButton.setText("Start Again");
             }
         }
@@ -298,6 +323,7 @@ public class DiceRoleSnake extends Application {
                 player2XPos = 40;
                 player2YPos = 40;
                 randResult.setText("Player 2 won");
+                gameStart = false;
                 gameButton.setText("Start Again");
             }
         }
