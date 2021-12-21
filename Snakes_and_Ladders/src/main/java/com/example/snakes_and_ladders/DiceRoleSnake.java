@@ -12,12 +12,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import java.util.concurrent.TimeUnit;
 
-import java.io.File;
 import java.io.IOException;
 
 public class DiceRoleSnake extends Application {
@@ -26,7 +26,6 @@ public class DiceRoleSnake extends Application {
     public Label randResult;
 
     public int cirPos[][] = new int [10][10];
-    public int ladderPos[][] = new int [6][3];
 
     public static final int Tile_Size = 80;
     public static final int width = 10;
@@ -35,23 +34,16 @@ public class DiceRoleSnake extends Application {
     public Circle player1;
     public Circle player2;
 
-    public int playerPosition1 = 1;
-    public int PlayerPosition2 = 1;
-
     public boolean player1Turn = true;
     public boolean player2Turn = true;
 
-    public static int player1XPos = 40;
-    public static int player1YPos = 760;
-
-    public static int player2XPos = 40;
-    public static int player2YPos = 760;
-
-    public int posCir1 = 1;
-    public int posCir2 = 1;
+    ladders l = new ladders();
+    Snakes s = new Snakes();
 
     public boolean gameStart = false;
     public Button gameButton;
+
+    Player p1, p2;
 
     private Group tileGroup = new Group();
 
@@ -80,15 +72,19 @@ public class DiceRoleSnake extends Application {
 
         player1 = new Circle(40);
         player1.setId("player1");
-        player1.setFill(Color.AQUA);
-        player1.setTranslateX(player1XPos);
-        player1.setTranslateY(player1YPos);
+        Image im1 = new Image("https://www.clipartmax.com/png/small/21-210215_ludo-piece-scarlett-red-ludo-cone-png.png",false);
+        player1.setFill(new ImagePattern(im1));
+        //player1.setFill(Color.AQUA);
+        player1.setTranslateX(40);
+        player1.setTranslateY(760);
 
         player2 = new Circle(40);
         player2.setId("player2");
-        player2.setFill(Color.CHOCOLATE);
-        player2.setTranslateX(player2XPos);
-        player2.setTranslateY(player2YPos);
+        Image im2 = new Image("https://img.favpng.com/17/7/5/chess-piece-ludo-game-clip-art-png-favpng-KXNZcDNRLRFvqqWRm5dP0qhLt.jpg", false);
+        player2.setFill(new ImagePattern(im2));
+        //player2.setFill(Color.CHOCOLATE);
+        player2.setTranslateX(40);
+        player2.setTranslateY(760);
 
         Button buttonP2 = new Button("Player2");
         buttonP2.setTranslateX(700);
@@ -100,62 +96,19 @@ public class DiceRoleSnake extends Application {
                     if (player2Turn) {
                         getDiceVal();
                         randResult.setText(String.valueOf(rand));
-                        moveP2();
-                        TranslatePlayer(player2XPos, player2YPos, player2);
+                        p2.move(rand);
+                        //moveP2();
+                        MovePlayer(p2.getXpos(), p2.getYPos(), player2);
                         player2Turn = false;
                         player1Turn = true;
 
                         //Ladders
-                        if(player2XPos == 200 && player2YPos == 760){
-                            TranslatePlayer(player2XPos = 120, player2YPos = 520, player2);
-                            posCir2 += 3;
-                        }
-                        if(player2XPos == 760 && player2YPos == 760){
-                            TranslatePlayer(player2XPos = 680, player2YPos = 680, player2);
-                            posCir2 += 1;
-                        }
-                        if(player2XPos == 520 && player2YPos == 600){
-                            TranslatePlayer(player2XPos = 600, player2YPos = 360, player2);
-                            posCir2 += 3;
-                        }
-                        if(player2XPos == 40 && player2YPos == 280){
-                            TranslatePlayer(player2XPos = 120, player2YPos = 40, player2);
-                            posCir2 += 3;
-                        }
-                        if(player2XPos == 360 && player2YPos == 360){
-                            TranslatePlayer(player2XPos = 280, player2YPos = 120, player2);
-                            posCir2 += 3;
-                        }
-                        if(player2XPos == 680 && player2YPos == 200){
-                            TranslatePlayer(player2XPos = 760, player2YPos = 120, player2);
-                            posCir2 += 1;
-                        }
+                        p2.setPosCir(l.checkLadder(p2, p2.getPosCir()));
+                        MovePlayer(p2.getXpos(), p2.getYPos(), player2);
 
                         //Snakes
-                        if(player2XPos == 360 && player2YPos == 680){
-                            TranslatePlayer(player2XPos = 600, player2YPos = 680, player2);
-                            posCir2 -= 0;
-                        }
-                        if(player2XPos == 760 && player2YPos == 520){
-                            TranslatePlayer(player2XPos = 280, player2YPos = 760, player2);
-                            posCir2 -= 3;
-                        }
-                        if(player2XPos == 520 && player2YPos == 440){
-                            TranslatePlayer(player2XPos = 360, player2YPos = 600, player2);
-                            posCir2 -= 2;
-                        }
-                        if(player2XPos == 200 && player2YPos == 280){
-                            TranslatePlayer(player2XPos = 40, player2YPos = 360, player2);
-                            posCir2 -= 1;
-                        }
-                        if(player2XPos == 440 && player2YPos == 280){
-                            TranslatePlayer(player2XPos = 680, player2YPos = 360, player2);
-                            posCir2 -= 1;
-                        }
-                        if(player2XPos == 280 && player2YPos == 40){
-                            TranslatePlayer(player2XPos = 440, player2YPos = 200, player2);
-                            posCir2 -= 2;
-                        }
+                        p2.setPosCir(s.checkSnake(p2, p2.getPosCir()));
+                        MovePlayer(p2.getXpos(), p2.getYPos(), player2);
                     }
                 }
             }
@@ -171,62 +124,19 @@ public class DiceRoleSnake extends Application {
                     if (player1Turn) {
                         getDiceVal();
                         randResult.setText(String.valueOf(rand));
-                        moveP1();
-                        TranslatePlayer(player1XPos, player1YPos, player1);
+                        //moveP1();
+                        p1.move(rand);
+                        MovePlayer(p1.getXpos(), p1.getYPos(), player1);
                         player1Turn = false;
                         player2Turn = true;
 
                         //Ladders
-                        if(player1XPos == 200 && player1YPos == 760){
-                            TranslatePlayer(player1XPos = 120, player1YPos = 520, player1);
-                            posCir1 += 3;
-                        }
-                        if(player1XPos == 760 && player1YPos == 760){
-                            TranslatePlayer(player1XPos = 680, player1YPos = 680, player1);
-                            posCir1 += 1;
-                        }
-                        if(player1XPos == 520 && player1YPos == 600){
-                            TranslatePlayer(player1XPos = 600, player1YPos = 360, player1);
-                            posCir1 += 3;
-                        }
-                        if(player1XPos == 40 && player1YPos == 280){
-                            TranslatePlayer(player1XPos = 120, player1YPos = 40, player1);
-                            posCir1 += 3;
-                        }
-                        if(player1XPos == 360 && player1YPos == 360){
-                            TranslatePlayer(player1XPos = 280, player1YPos = 120, player1);
-                            posCir1 += 3;
-                        }
-                        if(player1XPos == 680 && player1YPos == 200){
-                            TranslatePlayer(player1XPos = 760, player1YPos = 120, player1);
-                            posCir1 += 1;
-                        }
+                        p1.setPosCir(l.checkLadder(p1, p1.getPosCir()));
+                        MovePlayer(p1.getXpos(), p1.getYPos(), player1);
 
                         //Snakes
-                        if(player1XPos == 360 && player1YPos == 680){
-                            TranslatePlayer(player1XPos = 600, player1YPos = 680, player1);
-                            posCir1 -= 0;
-                        }
-                        if(player1XPos == 760 && player1YPos == 520){
-                            TranslatePlayer(player1XPos = 280, player1YPos = 760, player1);
-                            posCir1 -= 3;
-                        }
-                        if(player1XPos == 520 && player1YPos == 440){
-                            TranslatePlayer(player1XPos = 360, player1YPos = 600, player1);
-                            posCir1 -= 2;
-                        }
-                        if(player1XPos == 200 && player1YPos == 280){
-                            TranslatePlayer(player1XPos = 40, player1YPos = 360, player1);
-                            posCir1 -= 1;
-                        }
-                        if(player1XPos == 440 && player1YPos == 280){
-                            TranslatePlayer(player1XPos = 680, player1YPos = 360, player1);
-                            posCir1 -= 1;
-                        }
-                        if(player1XPos == 280 && player1YPos == 40){
-                            TranslatePlayer(player1XPos = 440, player1YPos = 200, player1);
-                            posCir1 -= 2;
-                        }
+                        p1.setPosCir(s.checkSnake(p1, p1.getPosCir()));
+                        MovePlayer(p1.getXpos(), p1.getYPos(), player1);
                     }
                 }
             }
@@ -239,17 +149,14 @@ public class DiceRoleSnake extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 gameButton.setText("Game Started");
-                player1XPos = 40;
-                player1YPos = 760;
+                p1 = new Player(40, 760);
+                p2 = new Player(40, 760);
 
-                player2XPos = 40;
-                player2YPos = 760;
+                player1.setTranslateX(p1.getXpos());
+                player1.setTranslateY(p1.getYPos());
 
-                player1.setTranslateX(player1XPos);
-                player1.setTranslateY(player1YPos);
-
-                player2.setTranslateX(player2XPos);
-                player2.setTranslateY(player2YPos);
+                player2.setTranslateX(p2.getXpos());
+                player2.setTranslateY(p2.getYPos());
                 gameStart = true;
             }
         });
@@ -272,64 +179,7 @@ public class DiceRoleSnake extends Application {
         rand = (int)(Math.random()*6+1);
     }
 
-    private  void moveP1() {
-        for (int i = 0; i < rand; i++) {
-            if (posCir1 % 2 == 1) {
-                player1XPos += 80;
-            }
-            if (posCir1 % 2 == 0) {
-                player1XPos -= 80;
-            }
-            if (player1XPos > 760) {
-                player1YPos -= 80;
-                player1XPos -= 80;
-                posCir1++;
-            }
-            if (player1XPos < 40) {
-                player1YPos -= 80;
-                player1XPos += 80;
-                posCir1++;
-            }
-
-            if (player1XPos < 30 || player1YPos < 30) {
-                player1XPos = 40;
-                player1YPos = 40;
-                randResult.setText("Player 1 won");
-                gameStart = false;
-                gameButton.setText("Start Again");
-            }
-        }
-    }
-
-    private void moveP2() {
-        for (int i = 0; i < rand; i++) {
-            if (posCir2 % 2 == 1) {
-                player2XPos += 80;
-            }
-            if (posCir2 % 2 == 0) {
-                player2XPos -= 80;
-            }
-            if (player2XPos > 760) {
-                player2YPos -= 80;
-                player2XPos -= 80;
-                posCir2++;
-            }
-            if (player2XPos < 40) {
-                player2YPos -= 80;
-                player2XPos += 80;
-                posCir2++;
-            }
-            if (player2XPos < 30 || player2YPos < 30) {
-                player2XPos = 40;
-                player2YPos = 40;
-                randResult.setText("Player 2 won");
-                gameStart = false;
-                gameButton.setText("Start Again");
-            }
-        }
-    }
-
-    private void TranslatePlayer(int x, int y, Circle b){
+    private void MovePlayer(int x, int y, Circle b){
         TranslateTransition animate = new TranslateTransition(Duration.millis(1000), b);
         animate.setToX(x);
         animate.setToY(y);
