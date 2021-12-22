@@ -22,26 +22,27 @@ import java.io.IOException;
 
 public class DiceRoleSnake extends Application {
 
-    public int rand;
-    public Label randResult;
+    private int rand;
+    private Label randResult;
 
-    public int cirPos[][] = new int [10][10];
+    private int cirPos[][] = new int [10][10];
 
-    public static final int Tile_Size = 80;
-    public static final int width = 10;
-    public static final int height = 10;
+    private static final int Tile_Size = 80;
+    private static final int width = 10;
+    private static final int height = 10;
 
-    public Circle player1;
-    public Circle player2;
+    private Circle player1;
+    private Circle player2;
 
-    public boolean player1Turn = true;
-    public boolean player2Turn = true;
+    private boolean player1Turn = true;
+    private boolean player2Turn = true;
 
     ladders l = new ladders();
     Snakes s = new Snakes();
+    Dice d = new Dice();
 
-    public boolean gameStart = false;
-    public Button gameButton;
+    private boolean gameStart = false;
+    private Button gameButton;
 
     Player p1, p2;
 
@@ -65,7 +66,7 @@ public class DiceRoleSnake extends Application {
 
         for (int i=0;i<height;i++){//Print x coords
             for (int j=0;j<width;j++){
-                System.out.println(cirPos[i][j]+ " ");
+                System.out.print(cirPos[i][j]+ " ");
             }
             System.out.println();
         }
@@ -74,7 +75,6 @@ public class DiceRoleSnake extends Application {
         player1.setId("player1");
         Image im1 = new Image("https://www.clipartmax.com/png/small/21-210215_ludo-piece-scarlett-red-ludo-cone-png.png",false);
         player1.setFill(new ImagePattern(im1));
-        //player1.setFill(Color.AQUA);
         player1.setTranslateX(40);
         player1.setTranslateY(760);
 
@@ -82,7 +82,6 @@ public class DiceRoleSnake extends Application {
         player2.setId("player2");
         Image im2 = new Image("https://img.favpng.com/17/7/5/chess-piece-ludo-game-clip-art-png-favpng-KXNZcDNRLRFvqqWRm5dP0qhLt.jpg", false);
         player2.setFill(new ImagePattern(im2));
-        //player2.setFill(Color.CHOCOLATE);
         player2.setTranslateX(40);
         player2.setTranslateY(760);
 
@@ -97,7 +96,6 @@ public class DiceRoleSnake extends Application {
                         getDiceVal();
                         randResult.setText(String.valueOf(rand));
                         p2.move(rand);
-                        //moveP2();
                         MovePlayer(p2.getXpos(), p2.getYPos(), player2);
                         player2Turn = false;
                         player1Turn = true;
@@ -124,7 +122,6 @@ public class DiceRoleSnake extends Application {
                     if (player1Turn) {
                         getDiceVal();
                         randResult.setText(String.valueOf(rand));
-                        //moveP1();
                         p1.move(rand);
                         MovePlayer(p1.getXpos(), p1.getYPos(), player1);
                         player1Turn = false;
@@ -176,7 +173,7 @@ public class DiceRoleSnake extends Application {
     }
 
     private void getDiceVal() {
-        rand = (int)(Math.random()*6+1);
+        rand = d.roll();
     }
 
     private void MovePlayer(int x, int y, Circle b){

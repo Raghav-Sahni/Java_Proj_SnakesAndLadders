@@ -6,8 +6,8 @@ import javafx.scene.paint.Color;
 public class Tile extends Rectangle {
 
     public Tile(int x, int y) {
-        setWidth(DiceRoleSnake.Tile_Size);
-        setHeight(DiceRoleSnake.Tile_Size);
+        setWidth(x);
+        setHeight(y);
 
         setFill(Color.PINK);
         setStroke(Color.BLACK);
