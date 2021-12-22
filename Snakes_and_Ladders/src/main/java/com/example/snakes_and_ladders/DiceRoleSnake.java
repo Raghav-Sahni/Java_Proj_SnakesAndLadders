@@ -4,6 +4,8 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -39,7 +42,8 @@ public class DiceRoleSnake extends Application {
 
     ladders l = new ladders();
     Snakes s = new Snakes();
-    Dice d = new Dice();
+    Dice d = new Dice(50,50);
+
 
     private boolean gameStart = false;
     private Button gameButton;
@@ -52,6 +56,11 @@ public class DiceRoleSnake extends Application {
         Pane root = new Pane();
         root.setPrefSize(width*Tile_Size, (height*Tile_Size)+80);
         root.getChildren().addAll(tileGroup);//Adds Tile group stuff in main stack pane
+
+        HBox diceContainer = new HBox();
+        diceContainer.setPadding(new Insets(10, 0, 0, 10));
+        diceContainer.setAlignment(Pos.CENTER);
+        diceContainer.setFillHeight(true);
 
         for(int i =0;i< height;i++){//Setting the tiles i.e the bg rectangles
             for(int j=0;j<width;j++){
@@ -168,12 +177,15 @@ public class DiceRoleSnake extends Application {
         bgImage.setFitHeight(800);
         bgImage.setFitWidth(800);
 
-        tileGroup.getChildren().addAll(bgImage, player1, player2, buttonP2, buttonP1, gameButton, randResult);
+        diceContainer.getChildren().add(d);
+        tileGroup.getChildren().addAll(bgImage, player1, player2, buttonP2, buttonP1, gameButton, randResult, diceContainer);
         return root;
     }
 
     private void getDiceVal() {
         rand = d.roll();
+        d.setShow(true);
+        d.update(rand);
     }
 
     private void MovePlayer(int x, int y, Circle b){
