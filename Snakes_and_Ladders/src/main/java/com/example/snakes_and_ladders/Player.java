@@ -54,6 +54,8 @@ public class Player {
             if (this.XPos < 30 || this.YPos < 30) {
                 this.XPos = 40;
                 this.YPos = 40;
+
+
                 return false;
             }
         }
