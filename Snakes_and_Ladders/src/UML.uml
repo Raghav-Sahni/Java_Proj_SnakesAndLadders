@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>C:/Users/Raghav Sahni/Documents/Java_Proj/Snakes_and_Ladders/src/main/java/com/example/snakes_and_ladders</OriginalElement>
+  <nodes>
+    <node x="408.1185897435897" y="429.0">com.example.snakes_and_ladders.DiceRoleSnake</node>
+    <node x="21.5" y="254.0">com.example.snakes_and_ladders.Snakes</node>
+    <node x="624.5" y="265.5">com.example.snakes_and_ladders.Tile</node>
+    <node x="439.5" y="220.0">com.example.snakes_and_ladders.Dice</node>
+    <node x="227.50000000000003" y="254.0">com.example.snakes_and_ladders.ladders</node>
+    <node x="98.18108974358972" y="0.0">com.example.snakes_and_ladders.Player</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.example.snakes_and_ladders.ladders" target="com.example.snakes_and_ladders.Player" relationship="DEPENDENCY">
+      <point x="0.0" y="-39.5" />
+      <point x="323.5" y="199.0" />
+      <point x="328.4310897435897" y="199.0" />
+      <point x="328.4310897435897" y="189.0" />
+      <point x="209.18108974358972" y="189.0" />
+      <point x="37.0" y="84.0" />
+    </edge>
+    <edge source="com.example.snakes_and_ladders.DiceRoleSnake" target="com.example.snakes_and_ladders.Snakes" relationship="TO_ONE">
+      <point x="-71.33333333333331" y="-282.0" />
+      <point x="443.7852564102564" y="408.0" />
+      <point x="97.61858974358972" y="408.0" />
+      <point x="97.61858974358972" y="398.0" />
+      <point x="68.0" y="398.0" />
+      <point x="-46.5" y="39.5" />
+    </edge>
+    <edge source="com.example.snakes_and_ladders.DiceRoleSnake" target="com.example.snakes_and_ladders.Player" relationship="DEPENDENCY">
+      <point x="71.33333333333331" y="-282.0" />
+      <point x="586.4519230769231" y="408.0" />
+      <point x="748.0" y="408.0" />
+      <point x="748.0" y="199.0" />
+      <point x="328.4310897435897" y="199.0" />
+      <point x="328.4310897435897" y="189.0" />
+      <point x="209.18108974358972" y="189.0" />
+      <point x="37.0" y="84.0" />
+    </edge>
+    <edge source="com.example.snakes_and_ladders.DiceRoleSnake" target="com.example.snakes_and_ladders.Dice" relationship="CREATE">
+      <point x="1.4210854715202004E-14" y="-282.0" />
+      <point x="515.1185897435897" y="408.0" />
+      <point x="520.0496794871794" y="408.0" />
+      <point x="520.0496794871794" y="388.0" />
+      <point x="563.25" y="388.0" />
+      <point x="41.25" y="73.5" />
+    </edge>
+    <edge source="com.example.snakes_and_ladders.DiceRoleSnake" target="com.example.snakes_and_ladders.Snakes" relationship="CREATE">
+      <point x="1.4210854715202004E-14" y="-282.0" />
+      <point x="515.1185897435897" y="408.0" />
+      <point x="520.0496794871794" y="408.0" />
+      <point x="520.0496794871794" y="388.0" />
+      <point x="160.99999999999997" y="388.0" />
+      <point x="46.5" y="39.5" />
+    </edge>
+    <edge source="com.example.snakes_and_ladders.DiceRoleSnake" target="com.example.snakes_and_ladders.Tile" relationship="CREATE">
+      <point x="1.4210854715202004E-14" y="-282.0" />
+      <point x="515.1185897435897" y="408.0" />
+      <point x="520.0496794871794" y="408.0" />
+      <point x="520.0496794871794" y="388.0" />
+      <point x="681.0" y="388.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="com.example.snakes_and_ladders.Snakes" target="com.example.snakes_and_ladders.Player" relationship="DEPENDENCY">
+      <point x="0.0" y="-39.5" />
+      <point x="114.5" y="199.0" />
+      <point x="328.4310897435897" y="199.0" />
+      <point x="328.4310897435897" y="189.0" />
+      <point x="209.18108974358972" y="189.0" />
+      <point x="37.0" y="84.0" />
+    </edge>
+    <edge source="com.example.snakes_and_ladders.DiceRoleSnake" target="com.example.snakes_and_ladders.Player" relationship="TO_ONE">
+      <point x="-71.33333333333331" y="-282.0" />
+      <point x="443.7852564102564" y="408.0" />
+      <point x="97.61858974358972" y="408.0" />
+      <point x="97.61858974358972" y="398.0" />
+      <point x="11.0" y="398.0" />
+      <point x="11.0" y="189.0" />
+      <point x="135.18108974358972" y="189.0" />
+      <point x="-37.0" y="84.0" />
+    </edge>
+    <edge source="com.example.snakes_and_ladders.DiceRoleSnake" target="com.example.snakes_and_ladders.ladders" relationship="CREATE">
+      <point x="1.4210854715202004E-14" y="-282.0" />
+      <point x="515.1185897435897" y="408.0" />
+      <point x="520.0496794871794" y="408.0" />
+      <point x="520.0496794871794" y="388.0" />
+      <point x="371.5" y="388.0" />
+      <point x="48.0" y="39.5" />
+    </edge>
+    <edge source="com.example.snakes_and_ladders.DiceRoleSnake" target="com.example.snakes_and_ladders.Dice" relationship="TO_ONE">
+      <point x="-71.33333333333331" y="-282.0" />
+      <point x="443.7852564102564" y="408.0" />
+      <point x="97.61858974358972" y="408.0" />
+      <point x="97.61858974358972" y="398.0" />
+      <point x="480.75" y="398.0" />
+      <point x="-41.25" y="73.5" />
+    </edge>
+    <edge source="com.example.snakes_and_ladders.DiceRoleSnake" target="com.example.snakes_and_ladders.ladders" relationship="TO_ONE">
+      <point x="-71.33333333333331" y="-282.0" />
+      <point x="443.7852564102564" y="408.0" />
+      <point x="97.61858974358972" y="408.0" />
+      <point x="97.61858974358972" y="398.0" />
+      <point x="275.5" y="398.0" />
+      <point x="-48.0" y="39.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.6446199407699901" showDependencies="true" x="374.0" y="496.50000000000006" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

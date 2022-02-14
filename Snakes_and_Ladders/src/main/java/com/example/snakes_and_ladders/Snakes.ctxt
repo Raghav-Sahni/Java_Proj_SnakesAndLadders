@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=Snakes
+comment1.params=p\ cir
+comment1.target=int\ checkSnake(Player,\ int)
+numComments=2

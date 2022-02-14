@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Player
+comment1.params=x\ y
+comment1.target=Player(int,\ int)
+comment2.params=
+comment2.target=int\ getXpos()
+comment3.params=
+comment3.target=int\ getYPos()
+comment4.params=
+comment4.target=int\ getPosCir()
+comment5.params=p
+comment5.target=void\ setPosCir(int)
+comment6.params=p
+comment6.target=void\ setXPos(int)
+comment7.params=p
+comment7.target=void\ setYPos(int)
+comment8.params=rand
+comment8.target=boolean\ move(int)
+numComments=9

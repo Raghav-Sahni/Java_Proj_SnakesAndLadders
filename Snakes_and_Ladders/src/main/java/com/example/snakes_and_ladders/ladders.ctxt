@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=ladders
+comment1.params=p\ cir
+comment1.target=int\ checkLadder(Player,\ int)
+numComments=2

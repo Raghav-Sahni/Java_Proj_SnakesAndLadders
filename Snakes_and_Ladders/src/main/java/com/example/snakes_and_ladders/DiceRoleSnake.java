@@ -104,10 +104,12 @@ public class DiceRoleSnake extends Application {
                     if (player2Turn) {
                         getDiceVal();
                         randResult.setText(String.valueOf(rand));
-                        p2.move(rand);
+                        gameStart = p2.move(rand);
                         MovePlayer(p2.getXpos(), p2.getYPos(), player2);
-                        player2Turn = false;
-                        player1Turn = true;
+                        if(rand != 6) {
+                            player2Turn = false;
+                            player1Turn = true;
+                        }
 
                         //Ladders
                         p2.setPosCir(l.checkLadder(p2, p2.getPosCir()));
@@ -131,10 +133,12 @@ public class DiceRoleSnake extends Application {
                     if (player1Turn) {
                         getDiceVal();
                         randResult.setText(String.valueOf(rand));
-                        p1.move(rand);
+                        gameStart = p1.move(rand);
                         MovePlayer(p1.getXpos(), p1.getYPos(), player1);
-                        player1Turn = false;
-                        player2Turn = true;
+                        if(rand != 6) {
+                            player1Turn = false;
+                            player2Turn = true;
+                        }
 
                         //Ladders
                         p1.setPosCir(l.checkLadder(p1, p1.getPosCir()));
