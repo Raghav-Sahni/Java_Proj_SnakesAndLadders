@@ -19,8 +19,10 @@ public class Dice extends Canvas {
     public Dice(double width, double height) {
         this.setWidth(width);
         this.setHeight(height);
+
         effect.setBlurType(BlurType.THREE_PASS_BOX);
         g = getGraphicsContext2D();
+
         g.setEffect(effect);
     }
 
